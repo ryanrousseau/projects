@@ -17,3 +17,7 @@ data "octopusdeploy_lifecycles" "default" {
 data "octopusdeploy_project_groups" "cloud-team" {
   partial_name = "-Cloud Team-"
 }
+
+data "octopusdeploy_git_credentials" "cac" {
+  name = "CaC"
+}

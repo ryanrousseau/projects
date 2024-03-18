@@ -18,6 +18,12 @@ resource "octopusdeploy_project" "app_b" {
     skip_machine_behavior           = "SkipUnavailableMachines"
   }
 
+  git_library_persistence_settings {
+    git_credential_id = data.octopusdeploy_git_credentials.cac.git_credentials[0].id
+    url = "https://github.com/ryanrousseau/app_b.git"
+    default_branch = "main"
+  }
+
   template {
     default_value = "example-default-value"
     help_text     = "example-help-test"
