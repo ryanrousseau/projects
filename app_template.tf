@@ -1,5 +1,5 @@
-resource "octopusdeploy_project" "app_b" {
-  name                                 = "App B"
+resource "octopusdeploy_project" "app_template" {
+  name                                 = "App Template"
   auto_create_release                  = false
   default_guided_failure_mode          = "EnvironmentDefault"
   default_to_skip_if_already_installed = false
@@ -9,7 +9,7 @@ resource "octopusdeploy_project" "app_b" {
   is_discrete_channel_release          = false
   is_version_controlled                = false
   lifecycle_id                         = data.octopusdeploy_lifecycles.default.lifecycles[0].id
-  project_group_id                     = octopusdeploy_project_group.apps.id
+  project_group_id                     = data.octopusdeploy_project_groups.templates.project_groups[0].id
   tenanted_deployment_participation    = "Tenanted"
 
   connectivity_policy {
@@ -20,7 +20,7 @@ resource "octopusdeploy_project" "app_b" {
 
   git_library_persistence_settings {
     git_credential_id = data.octopusdeploy_git_credentials.cac.git_credentials[0].id
-    url = "https://github.com/ryanrousseau/app_b.git"
+    url = "https://github.com/ryanrousseau/app_template.git"
     default_branch = "main"
   }
 
@@ -63,17 +63,6 @@ resource "octopusdeploy_project" "app_b" {
     help_text     = "The name of the S3 bucket used by this account, cluster, application combination."
     label         = "AWS S3 Bucket Name"
     name          = "Project.Tenant.CloudFormation.AppBucketName"
-    display_settings = {
-      "Octopus.ControlType" : "SingleLineText"
-    }
-  }
-
-  template {
-    id = "ff5be11f-c8aa-4ed3-a657-5c920d9b52ba"
-    default_value = "awd-##{Octopus.Deployment.Tenant.Name | ToLower | Replace \" \" \"-\" }-##{Octopus.Project.Name  | ToLower | Replace \" \" \"-\" }"
-    help_text     = "The k8s namespace to deploy the app to."
-    label         = "Kubernetes Namespace"
-    name          = "Project.Tenant.K8s.Namespace"
     display_settings = {
       "Octopus.ControlType" : "SingleLineText"
     }
