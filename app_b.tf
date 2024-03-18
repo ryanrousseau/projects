@@ -25,6 +25,7 @@ resource "octopusdeploy_project" "app_b" {
   }
 
   template {
+    id = "00a1a103-2be1-4a6e-ba9f-993659fdb48c"
     default_value = "Accounts-2923"
     help_text     = "The AWS account used by this account, cluster, application combination."
     label         = "AWS Account"
@@ -35,6 +36,7 @@ resource "octopusdeploy_project" "app_b" {
   }
 
   template {
+    id = "299aaddd-34e7-4edb-a6a1-4e71e3ccb5b3"
     default_value = "us-east-2"
     help_text     = "The region code for AWS resources used by this account and cluster."
     label         = "AWS Region Code"
@@ -45,6 +47,7 @@ resource "octopusdeploy_project" "app_b" {
   }
   
   template {
+    id = "94ea2db8-b09b-4199-a0dd-892bb142c9bb"
     default_value = "##{Octopus.Deployment.Tenant.Name | ToLower | Replace \" \" \"-\" }-##{Octopus.Project.Name  | ToLower | Replace \" \" \"-\" }-stack"
     help_text     = "The name of the CloudFOrmation stackt used by this account, cluster, application combination."
     label         = "AWS CloudFormation Stack Name"
@@ -55,6 +58,7 @@ resource "octopusdeploy_project" "app_b" {
   }
 
   template {
+    id = "7415748c-0ac0-4fc8-af42-66b147486960"
     default_value = "##{Octopus.Deployment.Tenant.Name | ToLower | Replace \" \" \"-\" }-##{Octopus.Project.Name  | ToLower | Replace \" \" \"-\" }-bucket"
     help_text     = "The name of the S3 bucket used by this account, cluster, application combination."
     label         = "AWS S3 Bucket Name"
